@@ -1,0 +1,104 @@
+{
+    "recipes": {
+        "Nasi Goreng Spesial": {
+            "name": "Nasi Goreng Spesial",
+            "ingredients": [
+                "nasi",
+                "telur",
+                "bawang merah",
+                "kecap manis",
+                "cabai"
+            ],
+            "steps": [
+                "panaskan minyak",
+                "tumis bumbu",
+                "masukkan nasi",
+                "aduk rata",
+                "sajikan"
+            ],
+            "cooking_time": 20,
+            "type": "HomemadeRecipe",
+            "source": "Koleksi Pribadi"
+        },
+        "Omelet Keju Cepat": {
+            "name": "Omelet Keju Cepat",
+            "ingredients": [
+                "telur",
+                "susu",
+                "keju",
+                "garam"
+            ],
+            "steps": [
+                "kocok telur",
+                "campur semua",
+                "goreng",
+                "lipat"
+            ],
+            "cooking_time": 10,
+            "type": "Recipe",
+            "source": null
+        },
+        "Sup Buntut Galaxy": {
+            "name": "Sup Buntut Galaxy",
+            "ingredients": [
+                "buntut sapi",
+                "wortel",
+                "kentang",
+                "bawang bombay",
+                "rempah luar angkasa"
+            ],
+            "steps": [
+                "rebus buntut",
+                "tumis bumbu",
+                "campur semua",
+                "didihkan",
+                "sajikan dengan plasma"
+            ],
+            "cooking_time": 90,
+            "type": "HomemadeRecipe",
+            "source": "Intergalactic Cook Book v2.0"
+        },
+        "nasgor": {
+            "name": "nasgor",
+            "ingredients": [
+                "nasi"
+            ],
+            "steps": [
+                "goreng"
+            ],
+            "cooking_time": 10,
+            "type": "HomemadeRecipe",
+            "source": "Koleksi Pribadi"
+        },
+        "Telur Dadar": {
+            "name": "Telur Dadar",
+            "ingredients": [
+                "Telur",
+                "Garam",
+                "Micin",
+                "Minyak goreng"
+            ],
+            "steps": [
+                "Pecahkan telur ke dalam wadah",
+                "Aduk telur hingga merata",
+                "Panaskan wajan di atas kompor",
+                "Tuangkan minyak goreng di atas wajan yang sudah panas",
+                "Tunggu sekitar 1 menit hingga minyaknya panas",
+                "Tuangkan telur yang sudah dikocok ke wajan yang berisi minyak itu",
+                "Tunggu hingga telur terbentuk",
+                "Jika bagian bawah sudah kekuningan balik ke sisi sebaliknya",
+                "Tunggu hingga warna pada sisi sebaliknya juga kekuningan",
+                "Jika sudah tiriskan telur dan sajikan di atas wadah piring"
+            ],
+            "cooking_time": 5,
+            "type": "HomemadeRecipe",
+            "source": "Koleksi Pribadi"
+        }
+    },
+    "shopping_queue": [
+        "telur",
+        "bawang merah",
+        "kecap manis",
+        "cabai"
+    ]
+}
