@@ -93,12 +93,38 @@
             "cooking_time": 5,
             "type": "HomemadeRecipe",
             "source": "Koleksi Pribadi"
+        },
+        "Ayam Goreng (Original)": {
+            "name": "Ayam Goreng (Original)",
+            "ingredients": [
+                "Daging ayam",
+                "Minyak goreng",
+                "Garam"
+            ],
+            "steps": [
+                "Siapkan wadah seperti baskom",
+                "Kemudian berikan sedikit air",
+                "Taburkan garam pada ayam yang sudah direndam",
+                "aduk hingga larutan garam merata pada ayam",
+                "tunggu selama 20 menit",
+                "Panaskan minyak goreng di wajan",
+                "Masukkan ayam ke minyak yang sudah panas",
+                "Tunggu selama 5 menit hingga sisi bawah ayam berwarna kuning kecoklatan",
+                "Balik ayam ke sisi sebaliknya",
+                "tunggu juga hingga sisi itu berwarna kuning kecoklatan",
+                "Angkat ayam dari wajan",
+                "Tiriskan minyaknya",
+                "Siap disajikan",
+                "Oh iya jangan lupa matiin kompornya."
+            ],
+            "cooking_time": 30,
+            "type": "HomemadeRecipe",
+            "source": "Koleksi Pribadi"
         }
     },
     "shopping_queue": [
-        "telur",
-        "bawang merah",
-        "kecap manis",
-        "cabai"
+        "Daging ayam",
+        "Minyak goreng",
+        "Garam"
     ]
 }
