@@ -159,7 +159,7 @@ class App(ctk.CTk):
         ctk.set_default_color_theme("green") 
 
         # --- TEMA MODERN, ELEGAN & FUTURISTIK ---
-        self.configure(fg_color="#1a1a2e") # Deep Space Blue/Purple
+        self.configure(fg_color="#ffffff") # Deep Space Blue/Purple
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=1)
         
@@ -192,14 +192,19 @@ class App(ctk.CTk):
 
         self.title_label = ctk.CTkLabel(
             self.header_frame, 
-            text="AURA RECIPIES", 
-            font=ctk.CTkFont(family="Cascadia Code", size=32, weight="bold"), 
-            text_color="#00FFFF" # Cyan neon
+            text="SIGMA RECIPES", 
+            font=ctk.CTkFont(family="Verdana", size=36, weight="bold"), 
+            text_color="#1a1a2e" # Cyan neon
         )
         self.title_label.grid(row=0, column=2, padx=(10, 0), pady=0, sticky="w")
         
         # Main Frame 
-        self.main_frame = ctk.CTkFrame(self, fg_color="#2e2e4a", corner_radius=20) 
+        self.main_frame = ctk.CTkFrame(self, 
+            fg_color="#dadada", 
+            corner_radius=20, 
+            border_width=1,         # Menentukan ketebalan border (misalnya 2 piksel)
+            border_color="#0022FF"    # Menentukan warna border
+        ) 
         self.main_frame.grid(row=1, column=0, padx=30, pady=(0, 30), sticky="nsew") 
         self.main_frame.grid_columnconfigure(0, weight=1)
         self.main_frame.grid_rowconfigure(0, weight=1)
@@ -207,13 +212,13 @@ class App(ctk.CTk):
         # Tab View 
         self.tab_view = ctk.CTkTabview(
             self.main_frame, 
-            fg_color="#2e2e4a", 
+            fg_color="#a0a0a0", 
             corner_radius=15,
-            segmented_button_fg_color="#3a3a5e", 
-            segmented_button_selected_color="#00FFFF", 
-            segmented_button_selected_hover_color="#00CCCC",
-            segmented_button_unselected_color="#2e2e4a",
-            segmented_button_unselected_hover_color="#3a3a5e",
+            segmented_button_fg_color="#323232", 
+            segmented_button_selected_color="#0022FF", 
+            segmented_button_selected_hover_color="#001DDC",
+            segmented_button_unselected_color="#7C7C7C",
+            segmented_button_unselected_hover_color="#686868",
         ) 
         self.tab_view.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
         
@@ -236,10 +241,10 @@ class App(ctk.CTk):
         # Frame Pencarian
         search_frame = ctk.CTkFrame(
             tab, 
-            fg_color="#3a3a5e", 
+            fg_color="#BBBBBB", 
             corner_radius=10,
             border_width=2,
-            border_color="#00FFFF" 
+            border_color="#0059FF" 
         )
         search_frame.pack(fill="x", padx=15, pady=10)
         
@@ -247,29 +252,29 @@ class App(ctk.CTk):
             search_frame, 
             placeholder_text="SEARCH INGREDIENTS...", 
             corner_radius=8,
-            fg_color="#1a1a2e", 
-            text_color="#FFFFFF",
-            font=ctk.CTkFont(family="Cascadia Code", size=13)
+            fg_color="#f0f0f0", 
+            text_color="#000000",
+            font=ctk.CTkFont(family="Segoe UI", size=13)
         )
         self.search_entry.pack(side="left", fill="x", expand=True, padx=(10, 5), pady=8)
         
         self.search_button = ctk.CTkButton(
             search_frame, 
-            text="FIND 🔍", 
+            text="FIND", 
             command=self.search_recipes,
             corner_radius=8,
             width=100,
-            fg_color="#00FFFF", hover_color="#00CCCC", 
-            text_color="#1a1a2e", 
-            font=ctk.CTkFont(family="Cascadia Code", size=13, weight="bold")
+            fg_color="#0059FF", hover_color="#004CDA", 
+            text_color="#FFFFFF", 
+            font=ctk.CTkFont(family="Segoe UI", size=13, weight="bold")
         )
         self.search_button.pack(side="left", padx=(0, 10), pady=8)
 
         self.history_label = ctk.CTkLabel(
             tab, 
             text="RECENTLY VIEWED : -", 
-            text_color="#AAAAAA",
-            font=ctk.CTkFont(family="Cascadia Code", size=12)
+            text_color="#2F2F2F",
+            font=ctk.CTkFont(family="Segoe UI", size=12)
         )
         self.history_label.pack(pady=(15, 10))
         
@@ -292,18 +297,18 @@ class App(ctk.CTk):
             
             recipe_frame = ctk.CTkFrame(
                 self.recipe_list_frame, 
-                fg_color="#3a3a5e", 
+                fg_color="#ffffff", 
                 corner_radius=12,
                 border_width=1,
-                border_color="#008B8B" 
+                border_color="#0037FF" 
             ) 
             recipe_frame.pack(fill="x", padx=8, pady=6)
             
             recipe_label = ctk.CTkLabel(
                 recipe_frame, 
                 text=recipe.name.upper(), 
-                font=ctk.CTkFont(family="Cascadia Code", size=16, weight="bold"),
-                text_color="#E0FFFF", 
+                font=ctk.CTkFont(family="Segoe UI", size=16, weight="bold"),
+                text_color="#000000", 
                 anchor="w"
             )
             recipe_label.pack(side="left", padx=15, pady=12, fill="x", expand=True)
@@ -313,9 +318,9 @@ class App(ctk.CTk):
                 text="VIEW DATA ►", 
                 command=lambda r=recipe: self.show_recipe_detail(r),
                 corner_radius=8,
-                fg_color="#4CAF50", hover_color="#45A049", 
+                fg_color="#0059FF", hover_color="#004CD8", 
                 text_color="white",
-                font=ctk.CTkFont(family="Cascadia Code", size=13)
+                font=ctk.CTkFont(family="Segoe UI", size=13, weight="bold")
             )
             detail_button.pack(side="right", padx=10, pady=10)
 
@@ -342,18 +347,18 @@ class App(ctk.CTk):
                 tab, 
                 text=label_text, 
                 anchor="w",
-                font=ctk.CTkFont(family="Cascadia Code", size=13, weight="bold"),
-                text_color="#E0FFFF"
+                font=ctk.CTkFont(family="Segoe UI", size=13, weight="bold"),
+                text_color="#000000"
             )
             label.grid(row=row_counter, column=0, padx=(25, 10), pady=12, sticky="w")
             
             entry = ctk.CTkEntry(
                 tab, 
                 corner_radius=10, 
-                fg_color="#1a1a2e", 
-                text_color="#00FFFF", 
-                border_color="#008B8B", border_width=1,
-                font=ctk.CTkFont(family="Cascadia Code", size=14)
+                fg_color="#ffffff", 
+                text_color="#000000", 
+                border_color="#0059FF", border_width=1,
+                font=ctk.CTkFont(family="Segoe UI", size=14)
             ) 
             entry.grid(row=row_counter, column=1, padx=(10, 25), pady=12, sticky="ew")
             
@@ -365,9 +370,9 @@ class App(ctk.CTk):
             text="ADD NEW RECIPE ➕", 
             command=self.add_new_recipe,
             corner_radius=12,
-            fg_color="#00FF7F", hover_color="#00E673", 
-            text_color="#1a1a2e", 
-            font=ctk.CTkFont(family="Cascadia Code", size=15, weight="bold")
+            fg_color="#004CFF", hover_color="#0043DF", 
+            text_color="#ffffff", 
+            font=ctk.CTkFont(family="Segoe UI", size=15, weight="bold")
         )
         self.add_button.grid(row=row_counter, column=0, columnspan=2, padx=25, pady=(30, 15), sticky="ew")
         row_counter += 1
@@ -375,7 +380,7 @@ class App(ctk.CTk):
         self.status_label_add = ctk.CTkLabel(
             tab, 
             text="",
-            font=ctk.CTkFont(family="Cascadia Code", size=12, weight="bold")
+            font=ctk.CTkFont(family="Segoe UI", size=12, weight="bold")
         )
         self.status_label_add.grid(row=row_counter, column=0, columnspan=2, pady=(0, 15))
 
@@ -390,16 +395,16 @@ class App(ctk.CTk):
         ctk.CTkLabel(
             tab, 
             text="ITEM QUEUE 🛒", 
-            font=ctk.CTkFont(family="Cascadia Code", weight="bold", size=18),
-            text_color="#00FFFF"
+            font=ctk.CTkFont(family="Verdana", weight="bold", size=18),
+            text_color="#000BE1"
         ).pack(pady=20)
         
         self.shopping_list_frame = ctk.CTkScrollableFrame(
             tab, 
             corner_radius=15, 
-            fg_color="#3a3a5e", 
+            fg_color="#ffffff", 
             border_width=1,
-            border_color="#00FFFF"
+            border_color="#003AF8"
         )
         self.shopping_list_frame.pack(fill="both", expand=True, padx=20, pady=10)
         
@@ -408,16 +413,16 @@ class App(ctk.CTk):
             text="MARK AS ACQUIRED ✅", 
             command=self.complete_shopping_item,
             corner_radius=12,
-            fg_color="#FF4500", hover_color="#E03E00", 
+            fg_color="#002AFF", hover_color="#001FE8", 
             text_color="white",
-            font=ctk.CTkFont(family="Cascadia Code", size=15, weight="bold")
+            font=ctk.CTkFont(family="Segoe UI", size=15, weight="bold")
         )
         self.complete_button.pack(padx=20, pady=20)
         
         self.status_label_shopping = ctk.CTkLabel(
             tab, 
             text="",
-            font=ctk.CTkFont(family="Cascadia Code", size=12, weight="bold")
+            font=ctk.CTkFont(family="Verdana", size=12, weight="bold")
         )
         self.status_label_shopping.pack(pady=(0, 10))
 
@@ -433,15 +438,15 @@ class App(ctk.CTk):
                 self.shopping_list_frame, 
                 text="NO ITEMS IN QUEUE.\nINITIATE ACQUISITION.", 
                 text_color="#888888",
-                font=ctk.CTkFont(family="Cascadia Code", size=14),
+                font=ctk.CTkFont(family="Segoe UI", size=14),
                 pady=20
             ).pack(expand=True)
             return
 
         for i, item in enumerate(self.manager.shopping_queue):
-            bg_color = "#4a4a70" if i == 0 else "transparent" 
-            border_color = "#00FFFF" if i == 0 else "#3a3a5e" 
-            text_color = "#00FFFF" if i == 0 else "#E0FFFF" 
+            bg_color = "#cbcbcb" if i == 0 else "transparent" 
+            border_color = "#003CFF" if i == 0 else "#ffffff" 
+            text_color = "#000000" if i == 0 else "#000000" 
             
             item_frame = ctk.CTkFrame(
                 self.shopping_list_frame,
@@ -457,7 +462,7 @@ class App(ctk.CTk):
                 text=f"► {item.upper()}", 
                 anchor="w",
                 text_color=text_color,
-                font=ctk.CTkFont(family="Cascadia Code", size=14, weight="bold")
+                font=ctk.CTkFont(family="Segoe UI", size=14, weight="bold")
             )
             item_label.pack(side="left", padx=15, pady=8, expand=True, fill="x")
 
@@ -523,7 +528,7 @@ class App(ctk.CTk):
         detail_window.title(f"RECIPE DATA: {recipe.name.upper()}")
         detail_window.geometry("650x500") # Ukuran jendela diperbesar untuk menampung teks panjang
         detail_window.grab_set() 
-        detail_window.configure(fg_color="#1a1a2e") 
+        detail_window.configure(fg_color="#ffffff") 
         
         prep_time = recipe.calculate_prep_time()
         
@@ -545,10 +550,10 @@ class App(ctk.CTk):
             width=600,
             height=300, # Atur tinggi untuk memberi ruang scroll jika diperlukan
             wrap="word", # Penting: Memastikan teks melipat pada batas kata
-            font=ctk.CTkFont(family="Cascadia Code", size=14),
-            text_color="#E0FFFF",
-            fg_color="#2e2e4a", # Background sedikit berbeda
-            border_color="#00FFFF",
+            font=ctk.CTkFont(family="Roboto", size=14),
+            text_color="#000000",
+            fg_color="#e3e3e3", # Background sedikit berbeda
+            border_color="#0051FF",
             border_width=1
         )
         self.detail_textbox.pack(padx=25, pady=(25, 15), fill="both", expand=True) 
@@ -564,9 +569,9 @@ class App(ctk.CTk):
             text="ADD TO SHOPPING PROTOCOL 🛒", 
             command=lambda r=recipe: self.add_recipe_ingredients_to_queue(r, detail_window),
             corner_radius=12,
-            fg_color="#00FFFF", hover_color="#00CCCC", 
-            text_color="#1a1a2e",
-            font=ctk.CTkFont(family="Cascadia Code", size=14, weight="bold")
+            fg_color="#0059FF", hover_color="#0051E8", 
+            text_color="#ffffff",
+            font=ctk.CTkFont(family="Verdana    ", size=14, weight="bold")
         )
         add_to_queue_button.pack(pady=(0, 20)) # Sesuaikan padding
 
@@ -592,10 +597,10 @@ class App(ctk.CTk):
             
         item = self.manager.remove_from_shopping_list() # Popleft dari Queue
         if item:
-            self.status_label_shopping.configure(text=f"✅ ACQUISITION COMPLETE: '{item.upper()}'", text_color="#00FF7F")
+            self.status_label_shopping.configure(text=f"✅ ACQUISITION COMPLETE: '{item.upper()}'", text_color="#48FF48")
             self.update_shopping_list()
         else:
-            self.status_label_shopping.configure(text="ℹ️ SHOPPING LIST EMPTY. NO TARGETS IDENTIFIED.", text_color="#888888")
+            self.status_label_shopping.configure(text="ℹ️ SHOPPING LIST EMPTY. NO TARGETS IDENTIFIED.", text_color="#646464")
 
 
 # -----------------------------------------------------------------
