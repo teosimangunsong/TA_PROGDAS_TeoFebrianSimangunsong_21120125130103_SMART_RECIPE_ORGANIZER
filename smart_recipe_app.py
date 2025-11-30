@@ -2,10 +2,9 @@ import customtkinter as ctk
 from collections import deque
 import random
 from PIL import Image, ImageTk 
-# --- Tambahan untuk Persistensi Data ---
+
 import json 
-import os # Digunakan opsional untuk manajemen file
-# ----------------------------------------
+import os 
 
 # --- MODUL 5 & 6: OBJECT ORIENTED PROGRAMMING I & II ---
 
@@ -42,12 +41,12 @@ class HomemadeRecipe(Recipe):
 class RecipeManager:
     """Mengelola koleksi resep dan struktur data, kini dengan persistensi data."""
     def __init__(self):
-        self.data_file = "recipe_data.json" # Nama file data
+        self.data_file = "recipe_data.json" 
         self.recipes = {} 
         self.shopping_queue = deque()     
         self.history_stack = []          
         
-        # Panggil method untuk memuat data lama saat inisialisasi
+
         self.is_data_loaded = self.load_data() 
 
     def add_recipe(self, recipe):
@@ -69,7 +68,7 @@ class RecipeManager:
     def add_to_history(self, recipe_name):
         """Menambahkan resep yang dilihat ke Stack."""
         if recipe_name in self.recipes:
-            self.history_stack.append(recipe_name) # Push ke Stack
+            self.history_stack.append(recipe_name)
 
     # ------------------------------------------------------------------
     # --- FUNGSI PERSISTENSI DATA (JSON I/O) ---
@@ -84,7 +83,7 @@ class RecipeManager:
                 "ingredients": recipe.ingredients,
                 "steps": recipe.steps,
                 "cooking_time": recipe.cooking_time,
-                # Identifikasi tipe kelas untuk proses loading yang benar
+
                 "type": "HomemadeRecipe" if isinstance(recipe, HomemadeRecipe) else "Recipe",
                 "source": getattr(recipe, 'source', None) 
             }
@@ -92,7 +91,7 @@ class RecipeManager:
 
         data_to_save = {
             "recipes": recipes_data,
-            # Konversi deque ke list untuk disimpan
+
             "shopping_queue": list(self.shopping_queue) 
         }
 
@@ -158,8 +157,8 @@ class App(ctk.CTk):
         ctk.set_appearance_mode("Dark") 
         ctk.set_default_color_theme("green") 
 
-        # --- TEMA MODERN, ELEGAN & FUTURISTIK ---
-        self.configure(fg_color="#ffffff") # Deep Space Blue/Purple
+
+        self.configure(fg_color="#ffffff")
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=1)
         
@@ -194,7 +193,7 @@ class App(ctk.CTk):
             self.header_frame, 
             text="SIGMA RECIPES", 
             font=ctk.CTkFont(family="Verdana", size=36, weight="bold"), 
-            text_color="#1a1a2e" # Cyan neon
+            text_color="#1a1a2e"
         )
         self.title_label.grid(row=0, column=2, padx=(10, 0), pady=0, sticky="w")
         
@@ -202,8 +201,8 @@ class App(ctk.CTk):
         self.main_frame = ctk.CTkFrame(self, 
             fg_color="#dadada", 
             corner_radius=20, 
-            border_width=1,         # Menentukan ketebalan border (misalnya 2 piksel)
-            border_color="#0022FF"    # Menentukan warna border
+            border_width=1,         
+            border_color="#0022FF"    
         ) 
         self.main_frame.grid(row=1, column=0, padx=30, pady=(0, 30), sticky="nsew") 
         self.main_frame.grid_columnconfigure(0, weight=1)
@@ -497,9 +496,9 @@ class App(ctk.CTk):
         
         if self.manager.add_recipe(new_recipe):
             if cooking_time > 60:
-                 self.status_label_add.configure(text=f"✅ RECIPE ADDED. (LONG DURATION: {cooking_time} MINS)", text_color="#FFFF00") # Kuning neon
+                 self.status_label_add.configure(text=f"✅ RECIPE ADDED. (LONG DURATION: {cooking_time} MINS)", text_color="#FFFF00") 
             else:
-                 self.status_label_add.configure(text="✅ RECIPE ADDED SUCCESSFULLY.", text_color="#00FF7F") # Hijau neon
+                 self.status_label_add.configure(text="✅ RECIPE ADDED SUCCESSFULLY.", text_color="#00FF7F") 
             for entry in self.entries.values():
                 entry.delete(0, 'end')
             self.update_recipe_list()
@@ -521,12 +520,12 @@ class App(ctk.CTk):
         self.manager.add_to_history(recipe.name) 
         
         latest_history = self.manager.history_stack[-1] if self.manager.history_stack else "NO DATA"
-        self.history_label.configure(text=f"RECENTLY VIEWED: {latest_history.upper()}") # Sudah dimodifikasi
+        self.history_label.configure(text=f"RECENTLY VIEWED: {latest_history.upper()}") 
         
         # Jendela detail
         detail_window = ctk.CTkToplevel(self)
         detail_window.title(f"RECIPE DATA: {recipe.name.upper()}")
-        detail_window.geometry("650x500") # Ukuran jendela diperbesar untuk menampung teks panjang
+        detail_window.geometry("650x500")
         detail_window.grab_set() 
         detail_window.configure(fg_color="#ffffff") 
         
@@ -539,29 +538,29 @@ class App(ctk.CTk):
             f"----------------------------------------\n"
             f"COOKING CYCLE: {recipe.cooking_time} MINS\n"
             f"INGREDIENT MANIFEST: {', '.join(recipe.ingredients).upper()}\n"
-            f"EXECUTION PROTOCOL:\n" # Pisahkan header "EXECUTION PROTOCOL"
-            f"   {'; '.join(recipe.steps).upper()}\n" # Tambahkan indentasi
+            f"EXECUTION PROTOCOL:\n" 
+            f"   {'; '.join(recipe.steps).upper()}\n" 
             f"ORIGIN SOURCE: {getattr(recipe, 'source', 'PUBLIC ARCHIVE').upper()}"
         )
         
-        # --- PERBAIKAN UTAMA: GANTI CTkLabel DENGAN CTkTextbox ---
+
         self.detail_textbox = ctk.CTkTextbox(
             detail_window,
             width=600,
-            height=300, # Atur tinggi untuk memberi ruang scroll jika diperlukan
-            wrap="word", # Penting: Memastikan teks melipat pada batas kata
+            height=300,
+            wrap="word", 
             font=ctk.CTkFont(family="Roboto", size=14),
             text_color="#000000",
-            fg_color="#e3e3e3", # Background sedikit berbeda
+            fg_color="#e3e3e3", 
             border_color="#0051FF",
             border_width=1
         )
         self.detail_textbox.pack(padx=25, pady=(25, 15), fill="both", expand=True) 
         
-        # Masukkan teks ke dalam Textbox
-        self.detail_textbox.delete("0.0", "end") # Hapus isi default
+        
+        self.detail_textbox.delete("0.0", "end") 
         self.detail_textbox.insert("0.0", detail_text)
-        self.detail_textbox.configure(state="disabled") # Nonaktifkan agar pengguna tidak bisa mengedit
+        self.detail_textbox.configure(state="disabled") 
         
         # Tombol aksi 
         add_to_queue_button = ctk.CTkButton(
@@ -573,11 +572,11 @@ class App(ctk.CTk):
             text_color="#ffffff",
             font=ctk.CTkFont(family="Verdana    ", size=14, weight="bold")
         )
-        add_to_queue_button.pack(pady=(0, 20)) # Sesuaikan padding
+        add_to_queue_button.pack(pady=(0, 20)) 
 
     def add_recipe_ingredients_to_queue(self, recipe, window):
         """Menambahkan bahan-bahan resep ke Queue."""
-        # Gunakan set sementara untuk menghindari duplikat dalam antrian
+
         current_queue_items = {q_item.strip().upper() for q_item in self.manager.shopping_queue}
         
         for ing in recipe.ingredients:
@@ -595,7 +594,7 @@ class App(ctk.CTk):
         if hasattr(self, 'status_label_add'):
             self.status_label_add.configure(text="")
             
-        item = self.manager.remove_from_shopping_list() # Popleft dari Queue
+        item = self.manager.remove_from_shopping_list() 
         if item:
             self.status_label_shopping.configure(text=f"✅ ACQUISITION COMPLETE: '{item.upper()}'", text_color="#48FF48")
             self.update_shopping_list()
@@ -603,19 +602,17 @@ class App(ctk.CTk):
             self.status_label_shopping.configure(text="ℹ️ SHOPPING LIST EMPTY. NO TARGETS IDENTIFIED.", text_color="#646464")
 
 
-# -----------------------------------------------------------------
+
 
 def on_closing():
     """Fungsi yang dipanggil saat jendela ditutup."""
-    manager.save_data()  # Simpan semua data terakhir
-    app.destroy()        # Tutup aplikasi
+    manager.save_data()  
+    app.destroy()        
 
 if __name__ == "__main__":
     
-    # 1. Inisialisasi Manager (Ini akan otomatis mencoba memuat data)
     manager = RecipeManager()
     
-    # 2. Tambahkan data awal hanya jika data tidak berhasil dimuat
     if not manager.is_data_loaded:
         print("Adding initial default recipes and shopping list...")
         
@@ -647,8 +644,8 @@ if __name__ == "__main__":
         manager.add_to_shopping_list("ayam fillet")
         manager.add_to_shopping_list("energi kristal")
     
-    # 3. Jalankan Aplikasi GUI
+    
     app = App(manager)
-    # Kaitkan fungsi on_closing dengan tombol 'X' (close window)
+    
     app.protocol("WM_DELETE_WINDOW", on_closing) 
     app.mainloop()

@@ -121,8 +121,11 @@
             "type": "HomemadeRecipe",
             "source": "Koleksi Pribadi"
         }
+
     },
     "shopping_queue": [
+        "telur",
+        "bawang merah",
         "kecap manis",
         "cabai"
     ]
